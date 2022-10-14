@@ -1,0 +1,102 @@
+.cKscZI {
+    display: block;
+    position: relative;
+    margin: 0.5em 0px;
+    border-left: 6px solid rgb(0, 0, 124);
+    line-height:1px
+    box-shadow: rgb(0 0 0 / 33%) 0px 2px 3px;
+    padding: 0.5em 1em;
+    background: rgb(229, 229, 242);
+    text-align: center
+}
+
+.cKscZI h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.centre{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center
+}
+
+.kEsMVQ {
+    display: inline-block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 0px 6px;
+    margin: 0px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: white;
+    font-style: normal;
+    background: rgba(0, 0, 124, 0.3);
+}
+
+.cKscZI p {
+    color: rgb(102, 102, 102);
+    font-size: 0.8em;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.blocktext {
+    margin-left: auto;
+    margin-right: auto;
+    width: 24em
+}
+
+.btn {
+  margin-left: auto;
+  margin-right: auto;
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 18pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 37px;   /* 余白       */
+  background    : #000066;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+  border        : 2px solid #000066;    /* 枠の指定 */
+}
+.btn:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #000066;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+.contents {
+   display: flex;
+   flex-wrap: nowrap;
+       margin-left: auto;
+    margin-right: auto;
+    width: 24em
+}
+.itemr {
+   width: calc(100% / 2);
+   padding: 20px 10px;
+   text-align: right;
+}
+
+.iteml {
+   width: calc(100% / 2);
+   padding: 20px 10px;
+   text-align: left;
+}
+
+.note{
+    text-align: right;
+}
+
+footer{
+    text-align: right;
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+}

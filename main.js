@@ -81,9 +81,9 @@ function onButtonClick() {
 function tweet() {
   var tw_contents="今日のご飯は"
   for(var i=0;i<gachalist.length;i++){
-    tw_contents=tw_contents+"・"+gachalist[i][1]+"\n";
+    tw_contents=tw_contents+"%0a・"+gachalist[i][1];
   }
-  tw_contents=tw_contents+"#立命館学食ガチャ "
+  tw_contents=tw_contents+"%0a%20%23立命館学食ガチャ%20"
 　　var url = "https://github.com/yuki1201/ru-stunum-college/blob/master/index.html";
 　　window.open().location.href = ("https://twitter.com/share?url=" + url + "&text=" + tw_contents + "&count=none&lang=ja");
 };

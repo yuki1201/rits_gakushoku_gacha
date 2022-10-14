@@ -79,7 +79,7 @@ function onButtonClick() {
 };
 
 function tweet() {
-  var tw_contents="今日のご飯は"
+  var tw_contents="学食500円ガチャを回したよ！"
   for(var i=0;i<gachalist.length;i++){
     tw_contents=tw_contents+"%0a・"+gachalist[i][1];
   }

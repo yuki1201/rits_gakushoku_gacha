@@ -13,7 +13,7 @@ function onButtonClick_staple() {
     var rgy=[0,0,0]
     while(1){
       menu=data[getRandomInt(data.length)];
-      if(menu[1]=="ライス"||menu[0]=="麺類"||menu[0]=="丼・カレー"){
+      if(menu[1]=="ライス"||menu[0]=="麺類"||menu[0]=="丼・カレー"||menu[0]=="定食メニュー"){
       value=value+parseInt(menu[2]);
       gachalist.push(menu);
       document.getElementById("output_message").insertAdjacentHTML('beforeend',makecard(menu));
@@ -26,7 +26,7 @@ function onButtonClick_staple() {
       break
     }
     }
-    while(value<500){
+    while(value<500||ddmenu=="2"){
       menu=data[getRandomInt(data.length)];
       if(value+parseInt(menu[2])<550){
       value=value+parseInt(menu[2]);
@@ -39,6 +39,9 @@ function onButtonClick_staple() {
       rgy[1]=rgy[1]+parseFloat(menu[11])
       rgy[2]=rgy[2]+parseFloat(menu[12])
     }
+    if(ddmenu=="2"){
+        break;
+      }
     }
     document.getElementById("result").insertAdjacentHTML('beforeend',makeresult(vcs,rgy));
     document.getElementById("note").insertAdjacentHTML('beforeend','<p class="note">1食の目安　赤2.7点,緑1.0点,黄5.7点</p></br>');

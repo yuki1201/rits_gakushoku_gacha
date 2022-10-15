@@ -107,7 +107,12 @@ function onButtonClick() {
       }
     }
     document.getElementById("result").insertAdjacentHTML('beforeend',makeresult(vcs,rgy));
-    document.getElementById("note").insertAdjacentHTML('beforeend','<p class="note">1食の目安　赤2.7点,緑1.0点,黄5.7点</p></br>');
+    document
+      .getElementById("note")
+      .insertAdjacentHTML(
+        "beforeend",
+        '<p class="note" style="text-align:left">1食の目安  (1.0点 = 80 kcal)</br>男：赤 2.0点, 緑 1.0点, 黄 7.0点</br>女：赤 2.0点, 緑 1.0点, 黄 4.0点以上</p></br>'
+      );
     document.getElementById("note").insertAdjacentHTML('beforeend','<div align="center"><input type="button" class="btn" value="結果をツイートする" onclick="tweet();" /></div></br>');
     
     //'</br>1食の目安　赤2.7点,緑1.0点,黄5.7点'

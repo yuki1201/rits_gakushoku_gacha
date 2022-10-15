@@ -53,6 +53,7 @@ div.blocktext {
 .btn {
   margin-left: auto;
   margin-right: auto;
+  width: 12em;
   display       : inline-block;
   border-radius : 5%;          /* 角丸       */
   font-size     : 18pt;        /* 文字サイズ */

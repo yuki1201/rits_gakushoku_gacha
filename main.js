@@ -120,3 +120,4 @@ function tweet() {
 　　var url = "https://yuki1201.github.io/rits_gakushoku_gacha/";
 　　window.open().location.href = ("https://twitter.com/share?url=" + url + "&text=" + tw_contents + "&count=none&lang=ja");
 };
+

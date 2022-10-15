@@ -120,8 +120,6 @@ function onButtonClick() {
     var count = 0
     while(rgy[0]<1.5 || rgy[1]<0.5 || rgy[2] < 3.5){
       count = count + 1
-      console.log(count)
-      console.log(gachalist)
       menu=data[getRandomInt(data.length)];
 
       if((rgy[0]+parseFloat(menu[10]) < 2.5 && rgy[1]+parseFloat(menu[11]) < 1.5 && rgy[2]+parseFloat(menu[12]) < 7.5 )||ddmenu=="2"){

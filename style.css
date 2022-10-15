@@ -60,16 +60,16 @@ div.blocktext {
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 12px 37px;   /* 余白       */
-  background    : #000066;     /* 背景色     */
+  background    : #a61e2b;     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
   line-height   : 1em;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
   box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
-  border        : 2px solid #000066;    /* 枠の指定 */
+  border        : 2px solid #a61e2b;    /* 枠の指定 */
 }
 .btn:hover {
   box-shadow    : none;        /* カーソル時の影消去 */
-  color         : #000066;     /* 背景色     */
+  color         : #a61e2b;     /* 背景色     */
   background    : #ffffff;     /* 文字色     */
 }
 

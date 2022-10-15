@@ -88,10 +88,10 @@ function onButtonClick() {
     gachalist=[]
     vcs=[0,0,0]
     var rgy=[0,0,0]
-    while(value<500){
+    while(value<850){
       menu=data[getRandomInt(data.length)];
 
-      if(value+parseInt(menu[2])<550||ddmenu=="2"){
+      if(value+parseInt(menu[2])<900||ddmenu=="2"){
       value=value+parseInt(menu[2]);
       gachalist.push(menu);
       document.getElementById("output_message").insertAdjacentHTML('beforeend',makecard(menu));
@@ -114,12 +114,12 @@ function onButtonClick() {
 };
 
 function tweet() {
-  var tw_contents="学食500円ガチャを回したよ！"
+  var tw_contents="学食900円ガチャを回したよ！"
   for(var i=0;i<gachalist.length;i++){
     tw_contents=tw_contents+"%0a・"+gachalist[i][1];
   }
 
-  tw_contents=tw_contents+"%0a%0a合計："+vcs[0]+"円 ("+vcs[1]+"kcal)%0a"
+  tw_contents=tw_contents + "%0a%0a合計：" + vcs[0] + "円 (" + vcs[1] + "kcal)%0a";
   tw_contents=tw_contents+"%0a%20%23立命館学食ガチャ%20%0a"
   var url = "https://yuki1201.github.io/rits_gakushoku_gacha/";
   window.open().location.href = ("https://twitter.com/share?url=" + url + "&text=" + tw_contents + "&count=none&lang=ja");

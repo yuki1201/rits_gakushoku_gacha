@@ -88,10 +88,10 @@ function onButtonClick() {
     gachalist=[]
     vcs=[0,0,0]
     var rgy=[0,0,0]
-    while(value<500){
+    while(value<850){
       menu=data[getRandomInt(data.length)];
 
-      if(value+parseInt(menu[2])<550||ddmenu=="2"){
+      if(value+parseInt(menu[2])<900||ddmenu=="2"){
       value=value+parseInt(menu[2]);
       gachalist.push(menu);
       document.getElementById("output_message").insertAdjacentHTML('beforeend',makecard(menu));
@@ -114,7 +114,7 @@ function onButtonClick() {
 };
 
 function tweet() {
-  var tw_contents="学食500円ガチャを回したよ！"
+  var tw_contents="学食900円ガチャを回したよ！"
   for(var i=0;i<gachalist.length;i++){
     tw_contents=tw_contents+"%0a・"+gachalist[i][1];
   }

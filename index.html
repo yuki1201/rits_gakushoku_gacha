@@ -5,7 +5,19 @@
     <title>立命館学食ガチャ</title>
     <main>
         <h1 class="centre">立命館学食ガチャ</h1>
-        <h2 class="centre">ユニオンスクエア500円ガチャ</h2>
+        <h2 class="centre">
+        <select class="select" id="shoplist">
+            <option value="0">ユニオンカフェテリア</option>
+            <option value="1">リンクカフェテリア</option>
+            <option value="2">ユニオンフードコート</option>
+            <option value="3">以学館食堂E-plats</option>
+            <option value="4">諒友館食堂</option>
+            <option value="5">存心館食堂</option>
+            <option value="6">OIC Cafeteria</option>
+        </select>
+        500円ガチャ
+        </h2>
+
         <div class="blocktext" id="output_message"></div>
         <div class="contents" id="result"></div>
         <div class="blocktext" id="note"></div>
@@ -13,6 +25,6 @@
         <input type="button" class="btn" value="ガチャを回す" onclick="onButtonClick();" />
         </div>
     </main>
-    <footer>当サイトを利用されたことで直接・間接的に生じた損失に関し一切責任を負いかねます</br></footer>
+    <footer></br></br>当サイトを利用されたことで直接・間接的に生じた損失に関し一切責任を負いかねます</br></footer>
     <script src="main.js"></script>
 </body>

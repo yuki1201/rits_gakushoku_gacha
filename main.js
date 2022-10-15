@@ -90,7 +90,8 @@ function onButtonClick() {
     var rgy=[0,0,0]
     while(value<500){
       menu=data[getRandomInt(data.length)];
-      if(value+parseInt(menu[2])<550){
+
+      if(value+parseInt(menu[2])<550||ddmenu=="2"){
       value=value+parseInt(menu[2]);
       gachalist.push(menu);
       document.getElementById("output_message").insertAdjacentHTML('beforeend',makecard(menu));
@@ -101,6 +102,9 @@ function onButtonClick() {
       rgy[1]=rgy[1]+parseFloat(menu[11])
       rgy[2]=rgy[2]+parseFloat(menu[12])
     }
+    if(ddmenu=="2"){
+        break;
+      }
     }
     document.getElementById("result").insertAdjacentHTML('beforeend',makeresult(vcs,rgy));
     document.getElementById("note").insertAdjacentHTML('beforeend','<p class="note">1食の目安　赤2.7点,緑1.0点,黄5.7点</p></br>');

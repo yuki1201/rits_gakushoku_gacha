@@ -11,7 +11,7 @@ function onButtonClick_staple() {
     gachalist=[]
     vcs=[0,0,0]
     var rgy=[0,0,0]
-    while(1){
+    while(1&&ddmenu!="2"){
       menu=data[getRandomInt(data.length)];
       if(menu[1]=="ライス"||menu[0]=="麺類"||menu[0]=="丼・カレー"||menu[0]=="定食メニュー"){
       value=value+parseInt(menu[2]);
@@ -26,7 +26,7 @@ function onButtonClick_staple() {
       break;
     }
     }
-    while(value<500||ddmenu!="2"){
+    while(value<500){
       menu=data[getRandomInt(data.length)];
       if(value+parseInt(menu[2])<550){
       value=value+parseInt(menu[2]);

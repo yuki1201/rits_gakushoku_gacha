@@ -23,10 +23,10 @@ function onButtonClick_staple() {
       rgy[0]=rgy[0]+parseFloat(menu[10])
       rgy[1]=rgy[1]+parseFloat(menu[11])
       rgy[2]=rgy[2]+parseFloat(menu[12])
-      break
+      break;
     }
     }
-    while(value<500||ddmenu=="2"){
+    while(value<500||ddmenu!="2"){
       menu=data[getRandomInt(data.length)];
       if(value+parseInt(menu[2])<550){
       value=value+parseInt(menu[2]);

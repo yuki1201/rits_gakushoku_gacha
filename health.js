@@ -35,6 +35,11 @@ function datasort(data,i){
   return data
 }
 
+function datasort_asc(data,i){
+  data.sort(function(a,b){return(a[i]-b[i]);});
+  return data
+}
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -77,35 +82,37 @@ function selectshop(ddmenu){
 }
 
 function onButtonClick() {
-  document.getElementById("output_message").innerHTML=''
+  
   document.getElementById("result").innerHTML=''
   document.getElementById("note").innerHTML=''
   let ddmenu = document.getElementById('shoplist').value;
   console.log(ddmenu);
+  while(1){
+    document.getElementById("output_message").innerHTML=''
+    flag = 1;
     var data = selectshop(ddmenu);
     //console.log(datasort(data,11));
     data=arrayShuffle(data);
+    //data = datasort()
     var value = 0;
     gachalist=[]
     vcs=[0,0,0]
     rgy=[0,0,0] // [red, green, yellow]
 
-    //メインを入れようとすると計算量がかなり多くなるので却下
-    /*
     while (1 && ddmenu != "2") {
       menu = data[getRandomInt(data.length)];
+      if(isNaN(menu[10])) continue;
       if (
-        menu[1] == "ライス" ||
-        menu[0] == "麺類" ||
-        menu[0] == "丼・カレー" ||
-        menu[0] == "定食メニュー"||
-        menu[0] == "主菜"
+          (menu[1] == "ライス" ||
+          menu[0] == "麺類" ||
+          menu[0] == "丼・カレー" ||
+          menu[0] == "定食メニュー"||
+          menu[0] == "主菜") &&
+          (menu[10]<2.0 && menu[11]<1.0 && menu[12]<7.0)
       ) {
         value = value + parseInt(menu[2]);
         gachalist.push(menu);
-        document
-          .getElementById("output_message")
-          .insertAdjacentHTML("beforeend", makecard(menu));
+        document.getElementById("output_message").insertAdjacentHTML("beforeend", makecard(menu));
         vcs[0] = vcs[0] + parseInt(menu[2]);
         vcs[1] = vcs[1] + parseInt(menu[3]);
         vcs[2] = vcs[2] + parseInt(menu[7]);
@@ -115,14 +122,14 @@ function onButtonClick() {
         break;
       }
     }
-    */
 
     var count = 0
     while(rgy[0]<1.5 || rgy[1]<0.5 || rgy[2] < 3.5){
       count = count + 1
       menu=data[getRandomInt(data.length)];
+      if(isNaN(menu[10])) continue;
 
-      if((rgy[0]+parseFloat(menu[10]) < 2.5 && rgy[1]+parseFloat(menu[11]) < 1.5 && rgy[2]+parseFloat(menu[12]) < 7.5 )||ddmenu=="2"){
+      if((rgy[0]+parseFloat(menu[10]) < 2.5 && rgy[1]+parseFloat(menu[11]) < 1.5 && rgy[2]+parseFloat(menu[12]) < 7.5 ) && value+parseInt(menu[2]) < 550||ddmenu=="2"){
       rgy[0]=rgy[0]+parseFloat(menu[10]);
       rgy[1]=rgy[1]+parseFloat(menu[11]);
       rgy[2]=rgy[2]+parseFloat(menu[12]);
@@ -134,12 +141,17 @@ function onButtonClick() {
       vcs[2]=vcs[2]+parseInt(menu[7]);
       }
     if(ddmenu=="2" && count < 4){
-        break;
+      break;
     }
-    if(count > 500){
+    if(count > 300){
+      flag = 0;
       break;
     }
     }
+    console.log(count)
+    if(flag) break;
+  }
+
     document.getElementById("result").insertAdjacentHTML('beforeend',makeresult(vcs,rgy));
     document.getElementById("note").insertAdjacentHTML("beforeend",'<p class="note" style="text-align:left">1食の目安  (1.0点 = 80 kcal)</br>男：赤 2.0点, 緑 1.0点, 黄 7.0点</br>女：赤 2.0点, 緑 1.0点, 黄 4.0点以上</p></br>');
     document.getElementById("note").insertAdjacentHTML('beforeend','<div align="center"><input type="button" class="btn" value="結果をツイートする" onclick="tweet();" /></div></br>');

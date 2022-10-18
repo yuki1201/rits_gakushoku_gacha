@@ -15,6 +15,7 @@ function csvToArray(path) {
   }
   return csvData;
 }
+
 function arrayShuffle(array) {
   for(var i = (array.length - 1); 0 < i; i--){
 
@@ -31,6 +32,11 @@ function arrayShuffle(array) {
 
 function datasort(data,i){
   data.sort(function(a,b){return(b[i]-a[i]);});
+  return data
+}
+
+function datasort_asc(data,i){
+  data.sort(function(a,b){return(a[i]-b[i]);});
   return data
 }
 
@@ -76,55 +82,96 @@ function selectshop(ddmenu){
 }
 
 function onButtonClick() {
-  document.getElementById("output_message").innerHTML=''
   document.getElementById("result").innerHTML=''
   document.getElementById("note").innerHTML=''
   let ddmenu = document.getElementById('shoplist').value;
-  console.log(ddmenu);
+  let gender = document.getElementById('genderlist').value;
+  while(1){
+    document.getElementById("output_message").innerHTML=''
+    flag = 1;
     var data = selectshop(ddmenu);
-    //console.log(datasort(data,11));
     data=arrayShuffle(data);
-    var value=0;
+    var value = 0;
     gachalist=[]
     vcs=[0,0,0]
-    var rgy=[0,0,0]
-    while(value<850){
-      menu=data[getRandomInt(data.length)];
+    rgy=[0,0,0] // [red, green, yellow]
+    
+    man_rgy=[2.7, 1.0, 5.7]
+    woman_rgy=[2.7, 1.0, 3.5]
+    standard_rgy=[0,0,0]
+    if(gender == "0") standard_rgy=man_rgy;
+    if(gender == "1") standard_rgy=woman_rgy;
+    //console.log(standard_rgy)
 
-      if(value+parseInt(menu[2])<900||ddmenu=="2"){
-      value=value+parseInt(menu[2]);
-      gachalist.push(menu);
-      document.getElementById("output_message").insertAdjacentHTML('beforeend',makecard(menu));
-      vcs[0]=vcs[0]+parseInt(menu[2])
-      vcs[1]=vcs[1]+parseInt(menu[3])
-      vcs[2]=vcs[2]+parseInt(menu[7])
-      rgy[0]=rgy[0]+parseFloat(menu[10])
-      rgy[1]=rgy[1]+parseFloat(menu[11])
-      rgy[2]=rgy[2]+parseFloat(menu[12])
-    }
-    if(ddmenu=="2"){
+    while (1 && ddmenu != "2") {
+      menu = data[getRandomInt(data.length)];
+      if(isNaN(menu[10])) continue;
+      if (
+          (menu[1] == "ライス" ||
+          menu[0] == "麺類" ||
+          menu[0] == "丼・カレー" ||
+          menu[0] == "定食メニュー"||
+          menu[0] == "主菜") &&
+          (menu[10]<standard_rgy[0] && menu[11]<standard_rgy[1] && menu[12]<standard_rgy[2])
+      ) {
+        value = value + parseInt(menu[2]);
+        gachalist.push(menu);
+        document.getElementById("output_message").insertAdjacentHTML("beforeend", makecard(menu));
+        vcs[0] = vcs[0] + parseInt(menu[2]);
+        vcs[1] = vcs[1] + parseInt(menu[3]);
+        vcs[2] = vcs[2] + parseInt(menu[7]);
+        rgy[0] = rgy[0] + parseFloat(menu[10]);
+        rgy[1] = rgy[1] + parseFloat(menu[11]);
+        rgy[2] = rgy[2] + parseFloat(menu[12]);
         break;
       }
     }
-    document.getElementById("result").insertAdjacentHTML('beforeend',makeresult(vcs,rgy));
-    document
-      .getElementById("note")
-      .insertAdjacentHTML(
-        "beforeend",
-        '<p class="note" style="text-align:left">1食の目安  (1.0点 = 80 kcal)</br>男：男：赤 2.7点, 緑 1.0点, 黄 5.7点</br>女：赤 2.7点, 緑 1.0点, 黄 3.5点</p></br>'
-      );
-    document.getElementById("note").insertAdjacentHTML('beforeend','<div align="center"><input type="button" class="btn" value="結果をツイートする" onclick="tweet();" /></div></br>');
     
-    //'</br>1食の目安　赤2.7点,緑1.0点,黄5.7点'
+    var count = 0
+    while(rgy[0] < (standard_rgy[0]-0.5) || rgy[1] < (standard_rgy[1]-0.5)|| rgy[2] < (standard_rgy[2]-0.5)){
+      count = count + 1
+      menu=data[getRandomInt(data.length)];
+      if(isNaN(menu[10])) continue;
+
+      if((rgy[0]+parseFloat(menu[10]) < (standard_rgy[0]+0.5) && rgy[1]+parseFloat(menu[11]) < (standard_rgy[1]+0.5) && rgy[2]+parseFloat(menu[12]) < (standard_rgy[2]+0.5) ) && value+parseInt(menu[2]) < 550||ddmenu=="2"){
+      rgy[0]=rgy[0]+parseFloat(menu[10]);
+      rgy[1]=rgy[1]+parseFloat(menu[11]);
+      rgy[2]=rgy[2]+parseFloat(menu[12]);
+      gachalist.push(menu);
+      document.getElementById("output_message").insertAdjacentHTML('beforeend',makecard(menu));
+      value = value + parseInt(menu[2]);
+      vcs[0]=vcs[0]+parseInt(menu[2]);
+      vcs[1]=vcs[1]+parseInt(menu[3]);
+      vcs[2]=vcs[2]+parseInt(menu[7]);
+      }
+    if(ddmenu=="2" && count < 4){
+      break;
+    }
+    if(count > 100){
+      flag = 0;
+      break;
+    }
+    }
+    console.log(count)
+    if(flag) break;
+  }
+    document.getElementById("result").insertAdjacentHTML('beforeend',makeresult(vcs,rgy));
+    document.getElementById("note").insertAdjacentHTML("beforeend",'<p class="note" style="text-align:left">1食の目安  (1.0点 = 80 kcal)</br>男：赤 2.7点, 緑 1.0点, 黄 5.7点</br>女：赤 2.7点, 緑 1.0点, 黄 3.5点</p></br>');
+    document.getElementById("note").insertAdjacentHTML('beforeend','<div align="center"><input type="button" class="btn" value="結果をツイートする" onclick="tweet();" /></div></br>');
+
+    rgy[0] = rgy[0].toFixed(1);
+    rgy[1] = rgy[1].toFixed(1);
+    rgy[2] = rgy[2].toFixed(1);
 };
 
 function tweet() {
-  var tw_contents="学食900円ガチャを回したよ！"
+  var tw_contents="健康ガチャを回したよ！"
   for(var i=0;i<gachalist.length;i++){
     tw_contents=tw_contents+"%0a・"+gachalist[i][1];
   }
 
-  tw_contents=tw_contents + "%0a%0a合計：" + vcs[0] + "円 (" + vcs[1] + "kcal)%0a";
+  tw_contents=tw_contents+"%0a%0a合計："+vcs[0]+"円 ("+vcs[1]+"kcal)%0a"
+  tw_contents =tw_contents + "赤:" + rgy[0] + "点 緑:" + rgy[1] + "点 黄色:" + rgy[2] + "点%0a";
   tw_contents=tw_contents+"%0a%20%23立命館学食ガチャ%20%0a"
   var url = "https://yuki1201.github.io/rits_gakushoku_gacha/";
   window.open().location.href = ("https://twitter.com/share?url=" + url + "&text=" + tw_contents + "&count=none&lang=ja");
